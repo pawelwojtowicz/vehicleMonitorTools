@@ -9,10 +9,7 @@ fi
 
 git clone https://github.com/pawelwojtowicz/vehicleCANProcessor.git
 
-cp dockerfile_vhHandler vehicleCANProcessor/dockerfile
-cp .dockerignore vehicleCANProcessor/
-
 cd vehicleCANProcessor
 
-sudo docker build -t ibisdev/node-vehicle_handler .
+sudo docker build -t node-vehicle-data-sink .
 
