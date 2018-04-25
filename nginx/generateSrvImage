@@ -1,10 +1,18 @@
 #!/bin/bash
-#git clone https://github.com/pawelwojtowicz/vehicleInfoFrontend.git
-#cd vehicleInfoFrontend
-#npm install
-#grunt
-#cd ..
+
+APP_DIR="vehicleInfoFrontend"
+
+if [ -d $APP_DIR ];
+then
+	echo "$APP_DIR has been found - remove first"
+	rm -rf "$APP_DIR"
+fi
+
+git clone https://github.com/pawelwojtowicz/vehicleInfoFrontend.git
+cd "$APP_DIR"
+npm install
+grunt
+cd ..
 
 sudo docker build -t vehicle-monitor-srv .
-#sudo docker build -t node-vehicle-data-sink .
 
