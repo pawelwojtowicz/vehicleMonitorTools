@@ -1,7 +1,10 @@
 #!/bin/bash
-docker run -d -p 6379:6379 --name redis redis
-docker run --link redis -p 8090:8090 -e "SRV_NAME=webfeed001" -d node-vehicle-data-sink webfeed
-docker run --link redis -p 8080:8080 -e "SRV_NAME=vhHandler001" -d node-vehicle-data-sink vhHandler
-docker run --link redis -p 8081:8080 -e "SRV_NAME=vhHandler002" -d node-vehicle-data-sink vhHandler
-docker run --link redis -p 8082:8080 -e "SRV_NAME=vhHandler003" -d node-vehicle-data-sink vhHandler
+docker network create monitor-network
+
+docker run --network="monitor-network" --name redis -d redis
+docker run --network="monitor-network" -e "SRV_NAME=webfeed001" --name webfeed001 -d node-vehicle-data-sink webfeed
+docker run --network="monitor-network" -e "SRV_NAME=vhHandler001" --name vehicleHandler001 -d node-vehicle-data-sink vhHandler
+docker run --network="monitor-network" -e "SRV_NAME=vhHandler002" --name vehicleHandler002 -d node-vehicle-data-sink vhHandler
+docker run --network="monitor-network" -e "SRV_NAME=vhHandler003" --name vehicleHandler003 -d node-vehicle-data-sink vhHandler
+docker run --network="monitor-network" -p 8080:80 --name nginx-server -d vehicle-monitor-srv
 

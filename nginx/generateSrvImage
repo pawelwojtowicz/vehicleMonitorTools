@@ -1,0 +1,10 @@
+#!/bin/bash
+#git clone https://github.com/pawelwojtowicz/vehicleInfoFrontend.git
+#cd vehicleInfoFrontend
+#npm install
+#grunt
+#cd ..
+
+sudo docker build -t vehicle-monitor-srv .
+#sudo docker build -t node-vehicle-data-sink .
+
