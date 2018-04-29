@@ -1,0 +1,2 @@
+sudo docker build -t kafka-quickstart:0.10.2.1 .
+
