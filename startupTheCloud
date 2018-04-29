@@ -2,9 +2,11 @@
 docker network create monitor-network
 
 docker run --network="monitor-network" --name redis -d redis
-docker run --network="monitor-network" -e "SRV_NAME=webfeed001" --name webfeed001 -d node-vehicle-data-sink webfeed
+docker run --network="monitor-network" -p 2181:2181 -p 9092:9092 --hostname=kafka --name kafka -d kafka-quickstart:0.10.2.0
 docker run --network="monitor-network" -e "SRV_NAME=vhHandler001" --name vehicleHandler001 -d node-vehicle-data-sink vhHandler
 docker run --network="monitor-network" -e "SRV_NAME=vhHandler002" --name vehicleHandler002 -d node-vehicle-data-sink vhHandler
 docker run --network="monitor-network" -e "SRV_NAME=vhHandler003" --name vehicleHandler003 -d node-vehicle-data-sink vhHandler
+docker run --network="monitor-network" -e "SRV_NAME=redisWriter001" --name redisWriter001 -d node-vehicle-data-sink redisWriter
+docker run --network="monitor-network" -e "SRV_NAME=webfeed001" --name webfeed001 -d node-vehicle-data-sink webfeed
 docker run --network="monitor-network" -p 8080:80 --name nginx-server -d vehicle-monitor-srv
 
