@@ -7,9 +7,7 @@ then
 	rm -rf "$APP_DIR"
 fi
 
-git clone https://github.com/pawelwojtowicz/vehicleCANProcessor.git
+git clone https://github.com/pawelwojtowicz/vehicleCANProcessor.git -b kafkaEdition
 
-cd vehicleCANProcessor
-
-sudo docker build -t node-vehicle-data-sink .
+sudo docker build -t node-vehicle-data-sink "$APP_DIR"
 
