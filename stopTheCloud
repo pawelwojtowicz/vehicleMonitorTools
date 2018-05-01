@@ -1,0 +1,15 @@
+#!/bin/bash
+
+docker stop redis
+docker stop kafka
+docker stop vehicleHandler001
+docker stop vehicleHandler002
+docker stop vehicleHandler003
+docker stop redisWriter001
+docker stop webfeed001
+docker stop nginx-server
+
+docker network rm monitor-network
+docker container prune
+
+
